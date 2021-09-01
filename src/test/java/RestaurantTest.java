@@ -72,30 +72,16 @@ class RestaurantTest {
     }
 
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    @Test
-    public void order_value_must_sum_up_when_multiple_items_are_selected (){
-        createTestRestaurant();
+    public int getOrderValue(List<Item> menu) {
+        int totalValueOfOrder = 0;
+        for (Item myItem : menu){
+            totalValueOfOrder += myItem.getPrice();
 
-        TestMenu = restaurant.getMenu();
-
-        assertEquals(388,restaurant.getOrderValue(dummyMenu));
-
+        }
+        return totalValueOfOrder;
     }
 
-
-    @Test
-    public void order_value_must_reduce_when_item_is_removed (){
-        createTestRestaurant();
-
-        TestMenu = restaurant.getMenu();
-        int total = restaurant.getOrderValue(dummyMenu);
-        int priceOfItemRemoved = dummyMenu.get(1).getPrice();
-        dummyMenu.remove(1);
-
-
-
-        assertEquals(total - priceOfItemRemoved,restaurant.getOrderValue(dummyMenu));
-
-    }
+}
+}
 }
 
